@@ -27,7 +27,9 @@ jobs:
         npm run build --if-present
     
     - name: zip app
-      run: tar czf  release.zip . 
+      run: |
+        cd ..
+        tar -czf  release.zip my-bot\*
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
