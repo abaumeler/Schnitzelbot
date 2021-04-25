@@ -29,6 +29,7 @@ jobs:
     - name: zip app
       run: |
         cd ..
+        pwd
         tar -czf  release.zip my-bot\*
 
     - name: Upload artifact for deployment job
