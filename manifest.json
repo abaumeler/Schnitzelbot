@@ -12,7 +12,7 @@
     },
     "icons": {
       "color": "icons/icon_schnitzel.png",
-      "outline": "icons_icon_schnitzel_transparent.png"
+      "outline": "icons/icon_schnitzel_transparent.png"
     },
     "name": {
       "short": "Schnitzelbot",

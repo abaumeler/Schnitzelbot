@@ -46,7 +46,28 @@ const messages = [
     'ja',
     'nein',
     'das leben ist kein Wunschkonzert',
-    'einmal mit Profis'];
+    'einmal mit Profis',
+    'falsche antwort   ääääääääääääääääääääää',
+    'das war bei der cenit schon so',
+    'hast du kurz telefon',
+    'habe ne 1/2 Stunde gebraucht bis der server wieder oben  war',
+    'muste in auf einen andere esx schieben',
+    'nee nur der serveer',
+    'alter so ein scheissssss',
+    'was wolltest diu ',
+    'ja das versthen aber die GL und pl nicht',
+    'doch muss rumpsteak essen weil der kurze  es will muste mich opfern',
+    'ich geht kurz den kurzen zur schule bringen',
+    'alter wie geht ihr denn ab?!',
+    'ja hört sich gut an',
+    'wart mal bist du kinder hast  dann kommen die richtigen herausforderungen',
+    'wer braucht schon glücklich',
+    'bin im meeting',
+    'ich muss mehr platte anhängen',
+    'geht nicht',
+    'ist vollgelaufen',
+    'falscher chat#',
+    'ich werd schone wieder ignoriert'];
 
 function answerRandomly() {
     return getMessage();
