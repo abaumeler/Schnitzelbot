@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-const { ActivityHandler, MessageFactory } = require('botbuilder');
+const { ActivityHandler, MessageFactory, ActivityTypes } = require('botbuilder');
 const randomAnswerCommandProcessor = require('./CommandProcessors/randomAnswerCommandProcessor.js');
 
 class EchoBot extends ActivityHandler {
@@ -10,7 +10,11 @@ class EchoBot extends ActivityHandler {
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
         this.onMessage(async (context, next) => {
             const replyText = randomAnswerCommandProcessor.answerRandomly();
-            await context.sendActivity(MessageFactory.text(replyText, replyText));
+            await context.sendActivities([
+                { type: ActivityTypes.Typing },
+                { type: 'delay', value: 300 },
+                { type: ActivityTypes.Message, text: replyText }
+            ]);
             // By calling next() you ensure that the next BotHandler is run.
             await next();
         });
