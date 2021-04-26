@@ -1,0 +1,57 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.9/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.9",
+    "version": "1.0",
+    "id": "52d7481c-6342-4294-a6e1-36ce996e7d31",
+    "packageName": "baumeler.bot.schnitzel",
+    "developer": {
+      "name": "Baumeler",
+      "websiteUrl": "https://github.com/abaumeler/Schnitzelbot",
+      "privacyUrl": "https://github.com/abaumeler/Schnitzelbot",
+      "termsOfUseUrl": "https://github.com/abaumeler/Schnitzelbot"
+    },
+    "icons": {
+      "color": "icons/icon_schnitzel.png",
+      "outline": "icons_icon_schnitzel_transparent.png"
+    },
+    "name": {
+      "short": "Schnitzelbot",
+      "full": "Schnitzelbot is here!"
+    },
+    "description": {
+      "short": "Schnitzelbot",
+      "full": "Famous Schnitzelbot is here to help"
+    },
+    "accentColor": "#E17410",
+    "staticTabs": [
+      {
+        "entityId": "conversations",
+        "scopes": [
+          "personal"
+        ]
+      },
+      {
+        "entityId": "about",
+        "scopes": [
+          "personal"
+        ]
+      }
+    ],
+    "bots": [
+      {
+        "botId": "58b79959-84c8-44d9-97bd-108523dace2d",
+        "scopes": [
+          "personal",
+          "groupchat",
+          "team"
+        ],
+        "supportsFiles": false,
+        "isNotificationOnly": false
+      }
+    ],
+    "permissions": [
+      "identity",
+      "messageTeamMembers"
+    ],
+    "validDomains": []
+  }
