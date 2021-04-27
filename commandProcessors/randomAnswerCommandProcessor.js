@@ -67,7 +67,10 @@ const messages = [
     'geht nicht',
     'ist vollgelaufen',
     'falscher chat#',
-    'ich werd schone wieder ignoriert'];
+    'ich werd schone wieder ignoriert',
+    'am arsch die waldfee',
+    'Wer glaubt das ein Zitronenfalter Zitronenfaltet, glaubt auch dass ein Abteilungsleiter die Abteilung leitet',
+    'Dein papa verkauft schnitzel'];
 
 function answerRandomly() {
     return getMessage();
