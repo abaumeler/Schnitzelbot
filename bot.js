@@ -3,16 +3,17 @@
 
 const { ActivityHandler, MessageFactory, ActivityTypes } = require('botbuilder');
 const randomAnswerCommandProcessor = require('./CommandProcessors/randomAnswerCommandProcessor.js');
+const questionAnswerCommandProcessor = require ('./commandProcessors/questionAnswerCommandProcessor.js');
 
 class EchoBot extends ActivityHandler {
     constructor() {
         super();
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
         this.onMessage(async (context, next) => {
-            const replyText = randomAnswerCommandProcessor.answerRandomly();
+            const replyText = randomAnswerCommandProcessor.getRandomAnswerq();
             await context.sendActivities([
                 { type: ActivityTypes.Typing },
-                { type: 'delay', value: 300 },
+                { type: 'delay', value: Math.random() * 300 },
                 { type: ActivityTypes.Message, text: replyText }
             ]);
             // By calling next() you ensure that the next BotHandler is run.

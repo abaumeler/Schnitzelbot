@@ -72,7 +72,7 @@ const messages = [
     'Wer glaubt das ein Zitronenfalter Zitronenfaltet, glaubt auch dass ein Abteilungsleiter die Abteilung leitet',
     'Dein papa verkauft schnitzel'];
 
-function answerRandomly() {
+function getRandomAnswer() {
     return getMessage();
 }
 
@@ -82,4 +82,4 @@ function getMessage() {
     return messages[messageID];
 }
 
-module.exports.answerRandomly = answerRandomly;
+module.exports.getRandomAnswer = getRandomAnswer;
