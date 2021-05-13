@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 
 const { ActivityHandler, MessageFactory, ActivityTypes } = require('botbuilder');
-const randomAnswerCommandProcessor = require('./CommandProcessors/randomAnswerCommandProcessor.js');
+const randomAnswerCommandProcessor = require('./commandProcessors/randomAnswerCommandProcessor.js');
 const questionAnswerCommandProcessor = require ('./commandProcessors/questionAnswerCommandProcessor.js');
+const danceCommandProcessor = require('./commandProcessors/danceCommandProcessor.js');
 
 class EchoBot extends ActivityHandler {
     constructor() {
@@ -12,9 +13,13 @@ class EchoBot extends ActivityHandler {
         // respond to user messages
         this.onMessage(async (context, next) => {
             let replyText
+            let replyAttachment
             if(context.activity.text.includes('?')){
                 console.log("question");
                 replyText = questionAnswerCommandProcessor.getQuestionAnswer();
+            }else if(context.activity.text.includes('dance')){
+                console.log("dance");
+                replyAttachment = [danceCommandProcessor.getDanceGif()];
             }else{   
                 console.log("message");         
                 replyText = randomAnswerCommandProcessor.getRandomAnswer();
