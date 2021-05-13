@@ -22,7 +22,6 @@ class EchoBot extends ActivityHandler {
                 replyAttachment = [danceCommandProcessor.getDanceGif()];
             } else {
                 console.log('message');
-                replyText = 'dancing';
                 replyText = randomAnswerCommandProcessor.getRandomAnswer();
             };
 
