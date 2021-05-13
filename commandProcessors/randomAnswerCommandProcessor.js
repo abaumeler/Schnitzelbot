@@ -35,16 +35,9 @@ const messages = [
     'ich bin erledigt',
     'noch am schlafen?',
     'sap ist ein kack',
-    'genau',
-    'kann sein',
-    'eher nicht',
     'und schon wieder müde',
     'hast du da ne call nummer',
     'gibts da ein call',
-    'sicher nicht',
-    'definitiv',
-    'ja',
-    'nein',
     'das leben ist kein Wunschkonzert',
     'einmal mit Profis',
     'falsche antwort   ääääääääääääääääääääää',
@@ -59,12 +52,10 @@ const messages = [
     'doch muss rumpsteak essen weil der kurze  es will muste mich opfern',
     'ich geht kurz den kurzen zur schule bringen',
     'alter wie geht ihr denn ab?!',
-    'ja hört sich gut an',
     'wart mal bist du kinder hast  dann kommen die richtigen herausforderungen',
     'wer braucht schon glücklich',
     'bin im meeting',
     'ich muss mehr platte anhängen',
-    'geht nicht',
     'ist vollgelaufen',
     'falscher chat#',
     'ich werd schone wieder ignoriert',
@@ -72,7 +63,7 @@ const messages = [
     'Wer glaubt das ein Zitronenfalter Zitronenfaltet, glaubt auch dass ein Abteilungsleiter die Abteilung leitet',
     'Dein papa verkauft schnitzel'];
 
-function answerRandomly() {
+function getRandomAnswer() {
     return getMessage();
 }
 
@@ -82,4 +73,4 @@ function getMessage() {
     return messages[messageID];
 }
 
-module.exports.answerRandomly = answerRandomly;
+module.exports.getRandomAnswer = getRandomAnswer;
