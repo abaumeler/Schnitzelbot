@@ -6,7 +6,9 @@ const postive_messages = [
     "wieso nicht",
     "definitiv",
     "denke schon",
-    "passt"
+    "passt",
+    "hört sich gut an",
+    "genau"
 ];
 
 const negative_messages = [
@@ -31,7 +33,7 @@ function getPositiveMessage() {
 function getNegativeMessage() {
     var messageID = Math.floor((Math.random() * negative_messages.length));
     console.log(messageID);
-    return messages[messageID];
+    return negative_messages[messageID];
 }
 
 function getQuestionAnswer() {

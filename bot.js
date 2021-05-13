@@ -8,18 +8,29 @@ const questionAnswerCommandProcessor = require ('./commandProcessors/questionAns
 class EchoBot extends ActivityHandler {
     constructor() {
         super();
-        // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
+        
+        // respond to user messages
         this.onMessage(async (context, next) => {
-            const replyText = randomAnswerCommandProcessor.getRandomAnswerq();
+            let replyText
+            if(context.activity.text.includes('?')){
+                console.log("question");
+                replyText = questionAnswerCommandProcessor.getQuestionAnswer();
+            }else{   
+                console.log("message");         
+                replyText = randomAnswerCommandProcessor.getRandomAnswer();
+            };
+            
             await context.sendActivities([
                 { type: ActivityTypes.Typing },
                 { type: 'delay', value: Math.random() * 300 },
                 { type: ActivityTypes.Message, text: replyText }
             ]);
+         
             // By calling next() you ensure that the next BotHandler is run.
             await next();
         });
 
+        // send welcome message when a new user is added
         this.onMembersAdded(async (context, next) => {
             const membersAdded = context.activity.membersAdded;
             const welcomeText = 'Alter wie geht ihr denn ab?!';
