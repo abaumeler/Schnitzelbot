@@ -3,34 +3,36 @@
 
 const { ActivityHandler, MessageFactory, ActivityTypes } = require('botbuilder');
 const randomAnswerCommandProcessor = require('./commandProcessors/randomAnswerCommandProcessor.js');
-const questionAnswerCommandProcessor = require ('./commandProcessors/questionAnswerCommandProcessor.js');
+const questionAnswerCommandProcessor = require('./commandProcessors/questionAnswerCommandProcessor.js');
 const danceCommandProcessor = require('./commandProcessors/danceCommandProcessor.js');
 
 class EchoBot extends ActivityHandler {
     constructor() {
         super();
-        
+
         // respond to user messages
         this.onMessage(async (context, next) => {
-            let replyText
-            let replyAttachment
-            if(context.activity.text.includes('?')){
-                console.log("question");
+            let replyText;
+            let replyAttachment;
+            if (context.activity.text.includes('?')) {
+                console.log('question');
                 replyText = questionAnswerCommandProcessor.getQuestionAnswer();
-            }else if(context.activity.text.includes('dance')){
-                console.log("dance");
+            } else if (context.activity.text.includes('dance')) {
+                console.log('dance');
                 replyAttachment = [danceCommandProcessor.getDanceGif()];
-            }else{   
-                console.log("message");         
+            } else {
+                console.log('message');
+                replyText = 'dancing';
                 replyText = randomAnswerCommandProcessor.getRandomAnswer();
             };
-            
+
             await context.sendActivities([
                 { type: ActivityTypes.Typing },
-                { type: 'delay', value: Math.random() * 300 },
-                { type: ActivityTypes.Message, text: replyText }
+                { type: 'delay', value: Math.random() * 600 },
+                { type: ActivityTypes.Message, text: replyText },
+                { type: ActivityTypes.Message, attachments: replyAttachment }
             ]);
-         
+
             // By calling next() you ensure that the next BotHandler is run.
             await next();
         });

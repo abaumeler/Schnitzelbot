@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 function getDanceGif() {
     const imageData = fs.readFileSync(path.join(__dirname, '../media/schnitzel_dance.gif'));
