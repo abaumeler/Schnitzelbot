@@ -19,6 +19,7 @@ class EchoBot extends ActivityHandler {
                 replyText = questionAnswerCommandProcessor.getQuestionAnswer();
             } else if (context.activity.text.includes('dance')) {
                 console.log('dance');
+                replyText = 'dancing';
                 replyAttachment = [danceCommandProcessor.getDanceGif()];
             } else {
                 console.log('message');
