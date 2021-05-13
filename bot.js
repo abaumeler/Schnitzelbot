@@ -19,19 +19,25 @@ class EchoBot extends ActivityHandler {
                 replyText = questionAnswerCommandProcessor.getQuestionAnswer();
             } else if (context.activity.text.includes('dance')) {
                 console.log('dance');
-                replyText = 'dancing';
                 replyAttachment = [danceCommandProcessor.getDanceGif()];
             } else {
                 console.log('message');
                 replyText = randomAnswerCommandProcessor.getRandomAnswer();
             };
 
-            await context.sendActivities([
-                { type: ActivityTypes.Typing },
-                { type: 'delay', value: Math.random() * 600 },
-                { type: ActivityTypes.Message, text: replyText },
-                { type: ActivityTypes.Message, attachments: replyAttachment }
-            ]);
+            if (replyAttachment) {
+                await context.sendActivities([
+                    { type: ActivityTypes.Typing },
+                    { type: 'delay', value: Math.random() * 600 },
+                    { type: ActivityTypes.Message, attachments: replyAttachment }
+                ]);
+            } else {
+                await context.sendActivities([
+                    { type: ActivityTypes.Typing },
+                    { type: 'delay', value: Math.random() * 600 },
+                    { type: ActivityTypes.Message, text: replyText }
+                ]);
+            }
 
             // By calling next() you ensure that the next BotHandler is run.
             await next();
