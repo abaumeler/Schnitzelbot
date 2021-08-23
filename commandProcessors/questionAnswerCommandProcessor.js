@@ -8,7 +8,8 @@ const postive_messages = [
     "denke schon",
     "passt",
     "hört sich gut an",
-    "genau"
+    "genau",
+    "easy"
 ];
 
 const negative_messages = [
