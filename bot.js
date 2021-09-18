@@ -15,9 +15,9 @@ class EchoBot extends ActivityHandler {
         this.onMessage(async (context, next) => {
             let replyText;
             let replyAttachment;
-            if (context.activity.text.includes('?')) {
-                console.log('question');
-                let reply = await ddgAnswerCommandProcessor.getDDGAnswer(context.activity.text);
+            if (context.activity.text.includes('search')) {
+                console.log('ddg');
+                let reply = await ddgAnswerCommandProcessor.getDDGAnswer(context.activity.text.replace("search", ""));
                 await context.sendActivities([
                     { type: ActivityTypes.Typing },
                     { type: 'delay', value: Math.random() * 600 },           
@@ -55,6 +55,14 @@ class EchoBot extends ActivityHandler {
                         }
                         ]
                     }          
+                ]);
+            } else if (context.activity.text.includes('?')) {
+                console.log('question');
+                replyText = questionAnswerCommandProcessor.getQuestionAnswer();
+                await context.sendActivities([
+                    { type: ActivityTypes.Typing },
+                    { type: 'delay', value: Math.random() * 600 },
+                    { type: ActivityTypes.Message, text: replyText }
                 ]);
             } else if (context.activity.text.includes('dance')) {
                 console.log('dance');
