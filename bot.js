@@ -23,38 +23,21 @@ class EchoBot extends ActivityHandler {
                     { type: 'delay', value: Math.random() * 600 },           
                     { type: ActivityTypes.Message, text: replyText, attachments: [
                         {
-                            "contentType": "application/vnd.microsoft.card.adaptive",
+                            "contentType": "application/vnd.microsoft.card.hero",
                             "content": {
-                            "type": "AdaptiveCard",
-                            "version": "1.0",
-                            "body": [
-                                {
-                                "type": "TextBlock",
-                                "text": reply.Heading,
-                                "size": "large"
-                                },
-                                {
-                                "type": "TextBlock",
-                                "text": reply.Abstract
-                                },
-                                {
-                                "type": "TextBlock",
-                                "text": reply.AbstractSource,
-                                "size": "small",
-                                "separation": "none"
+                              "title": reply.Heading,
+                              "subtitle": reply.Entity,
+                              "text": reply.AbstractText,
+                             "buttons": [
+                               {
+                                  "type": "openUrl",
+                                  "title": reply.AbstractSource,
+                                  "value": reply.AbstractURL
                                 }
-                            ],
-                            "actions": [
-                                {
-                                "type": "Action.OpenUrl",
-                                "url": reply.AbstractURL,
-                                "title": "Learn More"
-                                }
-                            ]
+                              ]
                             }
-                        }
-                        ]
-                    }          
+                         }
+                    ]}          
                 ]);
             } else if (context.activity.text.includes('?')) {
                 console.log('question');
