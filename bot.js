@@ -20,7 +20,7 @@ class EchoBot extends ActivityHandler {
                 let query = context.activity.text;
                 query = query.replace("search", "");
                 query = query.replace("@schnitzelbot", "");
-                let reply = await ddgAnswerCommandProcessor.getDDGAnswer(context.activity.text.replace("search", ""));
+                let reply = await ddgAnswerCommandProcessor.getDDGAnswer(query);
                 await context.sendActivities([
                     { type: ActivityTypes.Typing },
                     { type: 'delay', value: Math.random() * 600 },           
