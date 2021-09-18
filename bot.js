@@ -17,6 +17,9 @@ class EchoBot extends ActivityHandler {
             let replyAttachment;
             if (context.activity.text.includes('search')) {
                 console.log('ddg');
+                let query = context.activity.text;
+                query = query.replace("search", "");
+                query = query.replace("@schnitzelbot", "");
                 let reply = await ddgAnswerCommandProcessor.getDDGAnswer(context.activity.text.replace("search", ""));
                 await context.sendActivities([
                     { type: ActivityTypes.Typing },
