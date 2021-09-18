@@ -5,6 +5,7 @@ const { ActivityHandler, MessageFactory, ActivityTypes } = require('botbuilder')
 const randomAnswerCommandProcessor = require('./commandProcessors/randomAnswerCommandProcessor.js');
 const questionAnswerCommandProcessor = require('./commandProcessors/questionAnswerCommandProcessor.js');
 const danceCommandProcessor = require('./commandProcessors/danceCommandProcessor.js');
+const ddgAnswerCommandProcessor = require('./commandProcessors/ddgAnswerCommandProcessor.js');
 
 class EchoBot extends ActivityHandler {
     constructor() {
@@ -16,28 +17,62 @@ class EchoBot extends ActivityHandler {
             let replyAttachment;
             if (context.activity.text.includes('?')) {
                 console.log('question');
-                replyText = questionAnswerCommandProcessor.getQuestionAnswer();
+                let reply = await ddgAnswerCommandProcessor.getDDGAnswer(context.activity.text);
+                await context.sendActivities([
+                    { type: ActivityTypes.Typing },
+                    { type: 'delay', value: Math.random() * 600 },           
+                    { type: ActivityTypes.Message, text: replyText, attachments: [
+                        {
+                            "contentType": "application/vnd.microsoft.card.adaptive",
+                            "content": {
+                            "type": "AdaptiveCard",
+                            "version": "1.0",
+                            "body": [
+                                {
+                                "type": "TextBlock",
+                                "text": reply.Heading,
+                                "size": "large"
+                                },
+                                {
+                                "type": "TextBlock",
+                                "text": reply.Abstract
+                                },
+                                {
+                                "type": "TextBlock",
+                                "text": reply.AbstractSource,
+                                "size": "small",
+                                "separation": "none"
+                                }
+                            ],
+                            "actions": [
+                                {
+                                "type": "Action.OpenUrl",
+                                "url": reply.AbstractURL,
+                                "title": "Learn More"
+                                }
+                            ]
+                            }
+                        }
+                        ]
+                    }          
+                ]);
             } else if (context.activity.text.includes('dance')) {
                 console.log('dance');
                 replyAttachment = [danceCommandProcessor.getDanceGif()];
-            } else {
-                console.log('message');
-                replyText = randomAnswerCommandProcessor.getRandomAnswer();
-            };
-
-            if (replyAttachment) {
                 await context.sendActivities([
                     { type: ActivityTypes.Typing },
                     { type: 'delay', value: Math.random() * 600 },
                     { type: ActivityTypes.Message, attachments: replyAttachment }
                 ]);
             } else {
+                console.log('message');
+                replyText = randomAnswerCommandProcessor.getRandomAnswer();
                 await context.sendActivities([
                     { type: ActivityTypes.Typing },
                     { type: 'delay', value: Math.random() * 600 },
-                    { type: ActivityTypes.Message, text: replyText }
+                    { type: ActivityTypes.Message, text: replyText}
                 ]);
-            }
+            };
 
             // By calling next() you ensure that the next BotHandler is run.
             await next();

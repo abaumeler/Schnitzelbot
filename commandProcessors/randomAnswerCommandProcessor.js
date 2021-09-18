@@ -61,7 +61,7 @@ const messages = [
     'ich werd schone wieder ignoriert',
     'am arsch die waldfee',
     'Wer glaubt das ein Zitronenfalter Zitronenfaltet, glaubt auch dass ein Abteilungsleiter die Abteilung leitet',
-    'Dein papa verkauft schnitzel'
+    'Dein papa verkauft schnitzel',
     'werf du deinen AUsweis weg  und du bekommst rente nachbezahlt'];
 
 function getRandomAnswer() {
